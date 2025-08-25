@@ -1,9 +1,19 @@
 @import "tailwindcss";
-@import "tailwindcss";
 
-@theme {
-  --color-brand-primary: #06b6d4;
-  --color-brand-secondary: #6366f1;
-  --color-brand-accent: #f59e0b;
-  --color-brand-dark: #0f172a;
+:root {
+  /* Brand Colors */
+  --color-brand-primary: #06b6d4;  /* cyan */
+  --color-brand-secondary: #6366f1; /* indigo */
+  --color-brand-accent: #10b981;   /* emerald (accent) */
+  --color-brand-dark: #0f172a;     /* deep navy background */
+
+  /* Text Colors */
+  --color-text-on-dark: #ffffff;   /* header & dark background text */
+  --color-text-muted: #94a3b8;     /* subtle, muted text (slate-400) */
+
+  /* Surface & Background Layers */
+  --color-surface: #0b1220;        /* slightly lighter than --brand-dark */
+  --color-surface-2: rgba(15, 23, 42, 0.85); /* glassy overlay */
+  --color-input-bg: rgba(2, 6, 23, 0.7);     /* input/search background */
+  --color-border: rgba(255, 255, 255, 0.12); /* subtle borders */
 }
