@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { signInStart, signInSuccess, signInFailure } from "../redux/user/userSlice.js";
+import OAuth from "../components/OAuth.jsx";
 
 function SignIn() {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -59,77 +60,80 @@ function SignIn() {
 
         {/* Inner card */}
         <div className="relative rounded-2xl bg-[var(--color-surface-2)] p-8 shadow-xl">
-          {/* Two-tone title */}
-          <h1 className="text-3xl font-bold text-center mb-8 tracking-wide">
-            <span className="text-white">Sign&nbsp;</span>
-            <span className="text-[var(--color-brand-primary)]">In</span>
-          </h1>
+          <h1 className="text-3xl font-bold text-center mb-8 tracking-wide text-white ">
+  Sign In
+</h1>
 
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-            <input
-              id="email"
-              type="email"
-              placeholder="Email"
-              value={formData.email}
-              onChange={handleChange}
-              className="bg-[var(--color-input-bg)] text-[var(--color-text-on-dark)] placeholder-[var(--color-text-muted)] border border-[var(--color-border)] focus:border-[var(--color-brand-primary)] focus:ring-2 focus:ring-[var(--color-brand-primary)] outline-none p-3 rounded-lg transition"
-            />
-            <input
-              id="password"
-              type="password"
-              placeholder="Password"
-              value={formData.password}
-              onChange={handleChange}
-              className="bg-[var(--color-input-bg)] text-[var(--color-text-on-dark)] placeholder-[var(--color-text-muted)] border border-[var(--color-border)] focus:border-[var(--color-brand-primary)] focus:ring-2 focus:ring-[var(--color-brand-primary)] outline-none p-3 rounded-lg transition"
-            />
+         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+  {/* Email input */}
+  <input
+    id="email"
+    type="email"
+    placeholder="Email"
+    value={formData.email}
+    onChange={handleChange}
+    className="bg-[var(--color-input-bg)] text-[var(--color-text-on-dark)] placeholder-[var(--color-text-muted)] border border-[var(--color-border)] focus:border-[var(--color-brand-primary)] focus:ring-0 focus:ring-[var(--color-brand-primary)] outline-none p-3 rounded-lg transition"
+  />
 
-      {/* Sign In button */}
-<button
-  type="submit"
-  disabled={loading}
-  className="relative group overflow-hidden bg-[var(--color-brand-secondary)] text-white font-semibold py-3 px-6 rounded-lg uppercase transition disabled:opacity-70 flex items-center justify-center gap-2"
->
-  {/* Animated background fill */}
-  <span className="absolute inset-0 bg-[var(--color-brand-primary)] w-0 group-hover:w-full transition-all duration-500 ease-in-out"></span>
+  {/* Password input */}
+  <input
+    id="password"
+    type="password"
+    placeholder="Password"
+    value={formData.password}
+    onChange={handleChange}
+    className="bg-[var(--color-input-bg)] text-[var(--color-text-on-dark)] placeholder-[var(--color-text-muted)] border border-[var(--color-border)] focus:border-[var(--color-brand-primary)] focus:ring-0 focus:ring-[var(--color-brand-primary)] outline-none p-3 rounded-lg transition"
+  />
 
-  {/* Text or loader */}
-  <span className="relative z-10">
-    {loading ? (
-      <svg
-        className="w-5 h-5 animate-spin text-white"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-      >
-        <circle
-          className="opacity-25"
-          cx="12"
-          cy="12"
-          r="10"
-          stroke="currentColor"
-          strokeWidth="4"
-        ></circle>
-        <path
-          className="opacity-75"
-          fill="currentColor"
-          d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-        ></path>
-      </svg>
-    ) : (
-      "Sign In"
-    )}
-  </span>
-</button>
+  {/* Sign In button */}
+  <button
+    type="submit"
+    disabled={loading}
+    className="relative group overflow-hidden bg-[var(--color-brand-secondary)] text-white font-semibold py-3 px-6 rounded-lg uppercase transition disabled:opacity-70 flex items-center justify-center mt-2 -mb-2"
+  >
+    <span className="absolute inset-0 bg-[var(--color-brand-primary)] w-0 group-hover:w-full transition-all duration-500 ease-in-out"></span>
+    <span className="relative z-10">
+      {loading ? (
+        <svg
+          className="w-5 h-5 animate-spin text-white"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            className="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            strokeWidth="4"
+          ></circle>
+          <path
+            className="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+          ></path>
+        </svg>
+      ) : (
+        "Sign In"
+      )}
+    </span>
+  </button>
 
+  {/* Divider */}
+  <div className="flex items-center gap-2 my-2">
+    <div className="flex-1 h-px bg-[var(--color-border)]"></div>
+    <span className="text-xs text-[var(--color-text-muted)] uppercase">or</span>
+    <div className="flex-1 h-px bg-[var(--color-border)]"></div>
+  </div>
 
+  {/* Google OAuth button */}
+  <OAuth />
+</form>
 
-
-
-
-          </form>
 
           {/* Footer links */}
-          <div className="flex gap-2 justify-center mt-6 text-sm">
+          <div className="flex gap-2 justify-center mt-6 text-1xl">
             <p className="text-[var(--color-text-muted)]">
               Don&apos;t have an account?
             </p>

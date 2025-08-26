@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import OAuth from "../components/OAuth";
 
 function SignUp() {
   const [formData, setFormData] = useState({});
@@ -68,7 +69,7 @@ function SignUp() {
               placeholder="Username"
               type="text"
               onChange={handleChange}
-              className="bg-[var(--color-input-bg)] text-[var(--color-text-on-dark)] placeholder-[var(--color-text-muted)] border border-[var(--color-border)] focus:border-[var(--color-brand-primary)] focus:ring-2 focus:ring-[var(--color-brand-primary)] outline-none p-3 rounded-lg transition"
+              className="bg-[var(--color-input-bg)] text-[var(--color-text-on-dark)] placeholder-[var(--color-text-muted)] border border-[var(--color-border)] focus:border-[var(--color-brand-primary)] focus:ring-0 focus:ring-[var(--color-brand-primary)] outline-none p-3 rounded-lg transition"
             />
             <input
               value={formData.email || ""}
@@ -76,7 +77,7 @@ function SignUp() {
               placeholder="Email"
               type="email"
               onChange={handleChange}
-              className="bg-[var(--color-input-bg)] text-[var(--color-text-on-dark)] placeholder-[var(--color-text-muted)] border border-[var(--color-border)] focus:border-[var(--color-brand-primary)] focus:ring-2 focus:ring-[var(--color-brand-primary)] outline-none p-3 rounded-lg transition"
+              className="bg-[var(--color-input-bg)] text-[var(--color-text-on-dark)] placeholder-[var(--color-text-muted)] border border-[var(--color-border)] focus:border-[var(--color-brand-primary)] focus:ring-0 focus:ring-[var(--color-brand-primary)] outline-none p-3 rounded-lg transition"
             />
             <input
               value={formData.password || ""}
@@ -84,19 +85,20 @@ function SignUp() {
               placeholder="Password"
               type="password"
               onChange={handleChange}
-              className="bg-[var(--color-input-bg)] text-[var(--color-text-on-dark)] placeholder-[var(--color-text-muted)] border border-[var(--color-border)] focus:border-[var(--color-brand-primary)] focus:ring-2 focus:ring-[var(--color-brand-primary)] outline-none p-3 rounded-lg transition"
+              className="bg-[var(--color-input-bg)] text-[var(--color-text-on-dark)] placeholder-[var(--color-text-muted)] border border-[var(--color-border)] focus:border-[var(--color-brand-primary)] focus:ring-0 focus:ring-[var(--color-brand-primary)] outline-none p-3 rounded-lg transition"
             />
 
             {/* Button */}
 <button
+  type="submit"
   disabled={loading}
-  className="relative group overflow-hidden bg-[var(--color-brand-secondary)] text-white font-semibold py-3 px-6 rounded-lg uppercase transition disabled:opacity-70 flex items-center justify-center gap-2"
+  className="relative group overflow-hidden bg-[var(--color-brand-secondary)] text-white font-semibold py-3 px-6 rounded-lg uppercase transition disabled:opacity-70 flex items-center justify-center gap-2 w-full mt-2"
 >
-  {/* Animated background fill */}
+  {/* Animated hover background fill */}
   <span className="absolute inset-0 bg-[var(--color-brand-primary)] w-0 group-hover:w-full transition-all duration-500 ease-in-out"></span>
 
-  {/* Text or loader (kept above fill with z-10) */}
-  <span className="relative z-10">
+  {/* Text or loader */}
+  <span className="relative z-10 flex items-center justify-center gap-2">
     {loading ? (
       <svg
         className="w-5 h-5 animate-spin text-white"
@@ -119,10 +121,18 @@ function SignUp() {
         ></path>
       </svg>
     ) : (
-      "Sign Up"
+      "Sign In"
     )}
   </span>
 </button>
+{/* Divider */}
+<div className="flex items-center gap-2 mb-2">
+  <div className="flex-1 h-px bg-[var(--color-border)]"></div>
+  <span className="text-xs text-[var(--color-text-muted)] uppercase">or</span>
+  <div className="flex-1 h-px bg-[var(--color-border)]"></div>
+</div>
+{/* Google OAuth button */}
+<OAuth />
 
           </form>
 
