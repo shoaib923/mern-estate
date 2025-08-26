@@ -17,3 +17,14 @@
   --color-input-bg: rgba(2, 6, 23, 0.7);     /* input/search background */
   --color-border: rgba(255, 255, 255, 0.12); /* subtle borders */
 }
+
+
+   @keyframes heartbeat {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.1); }
+        }
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          25% { transform: translateX(-2px); }
+          75% { transform: translateX(2px); }
+        }

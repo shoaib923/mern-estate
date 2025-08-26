@@ -1,5 +1,3 @@
-
-
 import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 // eslint-disable-next-line no-unused-vars
@@ -15,7 +13,7 @@ export default function Header() {
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="text-[var(--color-text-on-dark)] sticky top-0 z-50 shadow-lg bg-gradient-to-r from-[var(--color-brand-dark)] via-[var(--color-brand-primary)] to-[var(--color-brand-secondary)]"
+      className="text-[var(--color-text-on-dark)] sticky top-0 z-50 shadow-lg bg-[var(--color-brand-dark)]"
     >
       <div className="flex items-center justify-between max-w-6xl mx-auto px-4 py-3">
         {/* Logo */}
@@ -36,24 +34,32 @@ export default function Header() {
           <span className="pointer-events-none absolute inset-0 rounded-full blur-lg opacity-0 group-hover:opacity-60 group-focus-within:opacity-60 bg-gradient-to-r from-[var(--color-brand-primary)] via-[var(--color-brand-secondary)] to-[var(--color-brand-accent)] transition group-hover:animate-[spin_6s_linear_infinite] group-focus-within:animate-[spin_6s_linear_infinite]" />
           <span className="pointer-events-none absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-50 group-focus-within:opacity-50 bg-gradient-to-r from-[var(--color-brand-accent)] via-[var(--color-brand-primary)] to-[var(--color-brand-secondary)] transition group-hover:animate-[spin_8s_linear_infinite_reverse] group-focus-within:animate-[spin_8s_linear_infinite_reverse]" />
 
-          {/* Search Form */}
-          <form className="relative flex items-center bg-[var(--color-input-bg)] backdrop-blur-md px-3 py-1 rounded-full shadow-inner w-44 hover:w-80 focus-within:w-80 transition-all duration-300 border border-[var(--color-border)]">
-            <label htmlFor="desktop-search" className="sr-only">Search</label>
-            <input
-              id="desktop-search"
-              type="text"
-              placeholder="Search..."
-              className="bg-transparent placeholder-[var(--color-text-muted)] text-[var(--color-text-on-dark)] focus:outline-none w-full px-2 text-sm"
-            />
-            <button
-              type="submit"
-              className="p-2 rounded-full hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] transition"
-              aria-label="Search"
-              title="Search"
-            >
-              <FaSearch className="text-[var(--color-brand-primary)] text-lg" />
-            </button>
-          </form>
+         {/* Search Form */}
+<form className="relative flex items-center bg-[var(--color-input-bg)] backdrop-blur-md px-3 py-1 rounded-full shadow-inner 
+  w-44 md:w-44 md:hover:w-80 md:focus-within:w-80 transition-all duration-300 
+  border border-[var(--color-border)] focus-within:border-[var(--color-brand-primary)] focus-within:shadow-md">
+  
+  <label htmlFor="desktop-search" className="sr-only">Search</label>
+  
+  <input
+    id="desktop-search"
+    type="text"
+    placeholder="Search..."
+    className="bg-transparent placeholder-[var(--color-text-muted)] text-[var(--color-text-on-dark)] 
+    focus:outline-none w-full px-2 text-base"
+  />
+  
+  <button
+    type="submit"
+    className="p-2 rounded-full hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 
+    focus-visible:ring-[var(--color-brand-primary)] transition"
+    aria-label="Search"
+    title="Search"
+  >
+    <FaSearch className="text-[var(--color-brand-primary)] text-base" />
+  </button>
+</form>
+
         </div>
 
         {/* Desktop Nav */}
@@ -65,7 +71,7 @@ export default function Header() {
           ].map((link, i) => (
             <li key={i}>
               <Link to={link.path} className="relative group cursor-pointer">
-                <span className="hover:text-[var(--color-brand-primary)] transition-colors">{link.name}</span>
+                <span className="transition-colors">{link.name}</span>
                 <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-[var(--color-brand-primary)] transition-all duration-300 group-hover:w-full" />
               </Link>
             </li>
@@ -91,47 +97,59 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Search */}
-      <AnimatePresence>
-        {showSearch && (
-          <motion.div
-            key="mobile-search"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.35, ease: [0.25, 0.8, 0.5, 1] }}
-            className="sm:hidden overflow-hidden"
-          >
-            <motion.div layout className="relative p-[4px] rounded-full overflow-hidden m-3">
-              {/* Glow */}
-              <motion.span
-                animate={{ opacity: [0.25, 0.8, 0.25], scale: [0.98, 1.02, 0.98] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                exit={{ opacity: 0, scale: 0.92 }}
-                className="pointer-events-none absolute inset-0 rounded-full blur-md bg-gradient-to-r from-[var(--color-brand-primary)] via-[var(--color-brand-secondary)] to-[var(--color-brand-accent)]"
-              />
+     {/* Mobile Search */}
+<AnimatePresence>
+  {showSearch && (
+    <motion.div
+      key="mobile-search"
+      initial={{ height: 0, opacity: 0 }}
+      animate={{ height: "auto", opacity: 1 }}
+      exit={{ height: 0, opacity: 0 }}
+      transition={{ type: "spring", stiffness: 220, damping: 25 }}
+      className="sm:hidden overflow-hidden"
+    >
+      <motion.div layout className="relative p-[4px] rounded-full overflow-hidden m-3">
+        {/* Glow - only when focus inside */}
+        <motion.span
+          animate={{ opacity: [0.2, 0.8, 0.2] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="pointer-events-none absolute inset-0 rounded-full blur-md 
+                     bg-gradient-to-r from-[var(--color-brand-primary)] via-[var(--color-brand-secondary)] to-[var(--color-brand-accent)]
+                     opacity-0 group-focus-within:opacity-100"
+        />
 
-              <form className="relative flex items-center bg-[var(--color-input-bg)] backdrop-blur-md px-3 py-2 rounded-full shadow-inner border border-[var(--color-border)]">
-                <label htmlFor="mobile-search" className="sr-only">Search</label>
-                <input
-                  id="mobile-search"
-                  type="text"
-                  placeholder="Search..."
-                  className="bg-transparent placeholder-[var(--color-text-muted)] text-[var(--color-text-on-dark)] focus:outline-none w-full px-2 text-sm"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowSearch(false)}
-                  className="p-2 rounded-full hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)]"
-                  aria-label="Close search"
-                >
-                  <FaSearch className="text-[var(--color-brand-primary)] text-lg" />
-                </button>
-              </form>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        <form className="group relative flex items-center bg-[var(--color-input-bg)] backdrop-blur-md px-3 py-2 
+                        rounded-full shadow-inner border border-[var(--color-border)] focus-within:border-[var(--color-brand-primary)]">
+          <label htmlFor="mobile-search" className="sr-only">Search</label>
+          
+          {/* Search Icon (static, left side) */}
+          <FaSearch className="text-[var(--color-text-muted)] text-base mr-2" />
+
+          {/* Input */}
+          <input
+            id="mobile-search"
+            type="text"
+            placeholder="Search..."
+            className="bg-transparent placeholder-[var(--color-text-muted)] text-[var(--color-text-on-dark)] 
+                       focus:outline-none w-full text-sm"
+          />
+
+          {/* Close Button */}
+          <button
+            type="button"
+            onClick={() => setShowSearch(false)}
+            className="ml-2 p-3 rounded-full hover:bg-white/10 focus-visible:outline-none 
+                       focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)]"
+            aria-label="Close search"
+          >
+            <FaTimes className="text-[var(--color-brand-primary)] text-lg" />
+          </button>
+        </form>
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
+
 
       {/* Mobile Drawer */}
       <AnimatePresence>
