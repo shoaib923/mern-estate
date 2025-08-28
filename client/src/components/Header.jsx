@@ -71,26 +71,26 @@ export default function Header() {
               </Link>
             </li>
           ))}
+<li className="relative group">
+  <Link
+    to={currentUser?.avatar ? "/profile" : "/sign-in"}
+    className="flex items-center gap-2 cursor-pointer relative"
+  >
+    {currentUser?.avatar ? (
+      <img
+        src={currentUser.avatar}
+        alt={currentUser.username || "User Avatar"}
+        className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full border-2 border-[var(--color-brand-primary)]"
+      />
+    ) : (
+      <span className="text-[var(--color-text-on-dark)]">Sign In</span>
+    )}
 
-          <li>
-            {currentUser?.avatar ? (
-              <Link to="/profile" className="relative block cursor-pointer">
-                <img
-                  src={currentUser.avatar}
-                  alt={currentUser.username || "User Avatar"}
-                  className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full border-2 border-[var(--color-brand-primary)]"
-                />
-              </Link>
-            ) : (
-              <Link
-                to="/sign-in"
-                className="relative group cursor-pointer hover:text-[var(--color-brand-primary)]"
-              >
-                Sign In
-                <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-[var(--color-brand-primary)] transition-all duration-300 group-hover:w-full" />
-              </Link>
-            )}
-          </li>
+    {/* Hover underline */}
+    <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-[var(--color-brand-primary)] transition-all duration-300 group-hover:w-full" />
+  </Link>
+</li>
+
         </ul>
 
         {/* Mobile / Tablet Icons */}

@@ -54,3 +54,36 @@ export const updateUser = async (req, res, next) => {
     res.status(500).json({ success: false, error: "Failed to update user" });
   }
 };
+
+
+
+// ---------------- DELETE USER ----------------
+export const deleteUser = async (req, res, next) => {
+  try {
+const { userId } = req.params;
+
+    if (!userId) {
+      return res.status(400).json({ success: false, message: "User ID is required" });
+    }
+
+    // ✅ Find the user
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    // ✅ Delete the user
+    await User.findByIdAndDelete(userId);
+
+    res.status(200).json({
+      success: true,
+      message: "User deleted successfully 🗑️",
+    });
+  } catch (err) {
+    console.error("Delete User Error:", err);
+    res.status(500).json({
+      success: false,
+      message: "Failed to delete user ❌",
+    });
+  }
+};
