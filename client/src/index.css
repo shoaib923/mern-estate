@@ -1,30 +1,33 @@
 @import "tailwindcss";
+html, body, #root {
+  @apply overflow-x-hidden;
+}
 
 :root {
   /* Brand Colors */
-  --color-brand-primary: #06b6d4;  /* cyan */
-  --color-brand-secondary: #6366f1; /* indigo */
-  --color-brand-accent: #10b981;   /* emerald (accent) */
-  --color-brand-dark: #0f172a;     /* deep navy background */
+  --color-brand-primary: #14b8a6;   /* teal-500 */
+  --color-brand-secondary: #8b5cf6; /* violet-500 */
+  --color-brand-accent: #f59e0b;    /* amber-500 */
+  --color-brand-dark: #1e293b;      /* slate-800 (background base) */
 
   /* Text Colors */
-  --color-text-on-dark: #ffffff;   /* header & dark background text */
-  --color-text-muted: #94a3b8;     /* subtle, muted text (slate-400) */
+  --color-text-on-dark: #f8fafc;    /* almost white (for readability) */
+  --color-text-muted: #94a3b8;      /* slate-400 muted */
 
   /* Surface & Background Layers */
-  --color-surface: #0b1220;        /* slightly lighter than --brand-dark */
-  --color-surface-2: rgba(15, 23, 42, 0.85); /* glassy overlay */
-  --color-input-bg: rgba(2, 6, 23, 0.7);     /* input/search background */
-  --color-border: rgba(255, 255, 255, 0.12); /* subtle borders */
+  --color-surface: #273549;         /* bluish slate for cards */
+  --color-surface-2: rgba(30, 41, 59, 0.85); /* glassy overlay */
+  --color-input-bg: #334155;        /* slate-700 for input fields */
+  --color-border: rgba(255, 255, 255, 0.1); /* subtle border */
 }
 
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
 
-   @keyframes heartbeat {
-          0%, 100% { transform: scale(1); }
-          50% { transform: scale(1.1); }
-        }
-        @keyframes shake {
-          0%, 100% { transform: translateX(0); }
-          25% { transform: translateX(-2px); }
-          75% { transform: translateX(2px); }
-        }
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
