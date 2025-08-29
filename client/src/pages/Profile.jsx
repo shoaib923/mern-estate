@@ -2,9 +2,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { signOut } from "../redux/user/userSlice.js";
-import { ArrowLeftIcon, ArrowRightOnRectangleIcon, TrashIcon } from "@heroicons/react/24/solid";
+import { ArrowLeftIcon, ArrowRightStartOnRectangleIcon, TrashIcon } from "@heroicons/react/24/solid";
 
 export default function Profile() {
   const [signingOut, setSigningOut] = useState(false);
@@ -141,7 +142,7 @@ return (
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
                 </svg>
               ) : (
-                <ArrowRightOnRectangleIcon className="w-5 h-5 text-white" />
+                <ArrowRightStartOnRectangleIcon className="w-5 h-5 text-white" />
               )}
             </div>
 
@@ -188,28 +189,58 @@ return (
               onChange={handleChange}
               className="bg-[var(--color-input-bg)] text-[var(--color-text-on-dark)] placeholder-[var(--color-text-muted)] border border-[var(--color-border)] focus:border-[var(--color-brand-primary)] focus:ring-0 outline-none p-3 rounded-lg transition"
             />
+<button
+  type="submit"
+  disabled={loading}
+  className="relative group cursor-pointer overflow-hidden bg-[var(--color-brand-secondary)] text-white font-semibold py-3 px-6 rounded-lg uppercase transition disabled:opacity-70 flex items-center justify-center mt-2 -mb-2"
+>
+  {/* Sliding hover background */}
+  <span className="absolute inset-0  bg-[var(--color-brand-primary)] w-0 group-hover:w-full transition-all duration-500 ease-in-out"></span>
+  
+  {/* Button content */}
+  <span className="relative z-10">
+    {loading ? (
+      <svg
+        className="w-5 h-5 animate-spin text-white"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <circle
+          className="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          strokeWidth="4"
+        ></circle>
+        <path
+          className="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+        ></path>
+      </svg>
+    ) : (
+      "Update Profile"
+    )}
+  </span>
+</button>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="flex items-center justify-center gap-2 py-3 rounded-lg bg-[var(--color-brand-secondary)] hover:bg-[var(--color-brand-primary)] transition font-semibold disabled:opacity-70 relative group overflow-hidden mt-2"
-            >
-              {loading ? (
-                <svg className="w-5 h-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-                </svg>
-              ) : (
-                "Update Profile"
-              )}
-            </button>
+{/* Create Listing Link styled as button */}
+<Link
+  to="/create-listing"
+  className="relative group overflow-hidden cursor-pointer bg-[var(--color-brand-secondary)] text-white font-semibold py-3 px-6 rounded-lg uppercase transition flex items-center justify-center mt-2 -mb-2"
+>
+  <span className="absolute inset-0 bg-[var(--color-brand-primary)] w-0 group-hover:w-full transition-all duration-500 ease-in-out"></span>
+  <span className="relative z-10">Create Listing</span>
+</Link>
           </form>
         </div>
       </div>
     </div>
     {/* Delete Confirmation Modal */}
 {showDeleteModal && (
-  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex  items-center justify-center z-50">
     <div className="bg-[var(--color-surface-2)] p-6 rounded-2xl w-80 text-center shadow-lg">
       <h2 className="text-xl font-semibold mb-4 text-white">Delete Account?</h2>
       <p className="text-[var(--color-text-muted)] mb-6">

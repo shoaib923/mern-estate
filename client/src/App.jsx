@@ -12,6 +12,7 @@ import About from './pages/About';
 import Profile from './pages/Profile';
 import Header from './components/Header';
 import PrivateRoute from './components/PrivateRoute';
+import CreatingListing from './pages/CreatingListing';
 
 function PageTransition({ children }) {
   return (
@@ -44,6 +45,8 @@ export default function App() {
           <Route path='/about' element={<PageTransition><About /></PageTransition>} />
           <Route element={<PrivateRoute />}>
             <Route path='/profile' element={<PageTransition><Profile /></PageTransition>} />
+            <Route path='/create-listing' element={<PageTransition><CreatingListing /></PageTransition>} />
+
           </Route>
         </Routes>
       </AnimatePresence>
