@@ -2,14 +2,18 @@ import axios from "axios";
 import FormData from "form-data";
 import dotenv from "dotenv";
 dotenv.config();
-
 export const uploadImage = async (req, res) => {
   try {
+    const token = req.cookies?.access_token; // <- read the cookie
+
+    if (!token) {
+      return res.status(401).json({ error: "Access token missing" });
+    }
+
     if (!req.file) {
       return res.status(400).json({ error: "No file uploaded" });
     }
 
-    // Check file size (max 5MB for your app logic, Freeimage allows up to 128MB)
     if (req.file.size > 5 * 1024 * 1024) {
       return res.status(400).json({ error: "File size exceeds 5MB" });
     }
@@ -31,7 +35,6 @@ export const uploadImage = async (req, res) => {
       return res.status(400).json({ error: response.data.error?.message || "Upload failed" });
     }
 
-    // Return uploaded image details
     res.json({
       message: "Image uploaded successfully",
       url: response.data.image.display_url,

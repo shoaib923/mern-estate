@@ -13,6 +13,7 @@ import Profile from './pages/Profile';
 import Header from './components/Header';
 import PrivateRoute from './components/PrivateRoute';
 import CreatingListing from './pages/CreatingListing';
+import Listing from './pages/Listing';
 
 function PageTransition({ children }) {
   return (
@@ -28,8 +29,6 @@ function PageTransition({ children }) {
   );
 }
 
-
-
 export default function App() {
   const location = useLocation();
 
@@ -43,11 +42,15 @@ export default function App() {
           <Route path='/sign-in' element={<PageTransition><SignIn /></PageTransition>} />
           <Route path='/sign-up' element={<PageTransition><SignUp /></PageTransition>} />
           <Route path='/about' element={<PageTransition><About /></PageTransition>} />
+
+          {/* Private routes */}
           <Route element={<PrivateRoute />}>
             <Route path='/profile' element={<PageTransition><Profile /></PageTransition>} />
             <Route path='/create-listing' element={<PageTransition><CreatingListing /></PageTransition>} />
-
           </Route>
+
+          {/* Listing detail route */}
+<Route path='/listing/:id' element={<PageTransition><Listing /></PageTransition>} />
         </Routes>
       </AnimatePresence>
 
